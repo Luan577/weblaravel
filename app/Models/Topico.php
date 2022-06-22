@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Topico extends Model
 {
     use HasFactory;
-    public function mensgens()
+    public function mensagens()
     {
         return $this->belongsToMany(Mensagem::class);
     }
