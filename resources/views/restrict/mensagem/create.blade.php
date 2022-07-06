@@ -26,7 +26,7 @@
         </label>
         <div class="sub">
             @foreach($topicos as $topico)
-            <input type="checkbox" id="top{{$topico->}}" value="{{$topico->id}}" name="topico[]" @if($topico->id==old('topico_id')) checked @endif />
+            <input type="checkbox" id="top{{$topico->id}}" value="{{$topico->id}}" name="topico[]" @if($topico->id==old('topico_id')) checked @endif />
             <label for="top{{$topico->id}}">{{$topico->topico}}</label>
             @endforeach
         </div>
