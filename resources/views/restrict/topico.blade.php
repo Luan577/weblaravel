@@ -17,7 +17,7 @@
             <tr>
                 <td>{{$topico->topico}}</td>
                 <td>
-                    <a href="{{route('topico.edit',@topico->id)}}" class="button">
+                    <a href="{{route('topico.edit',$topico->id)}}" class="button">
                         Editar
                     </a>
                 </td>

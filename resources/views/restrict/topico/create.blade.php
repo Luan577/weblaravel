@@ -9,7 +9,7 @@
 </ul>
 @endif
 <form method="POST" action="{{url('topico')}}" enctype="multipart/form-data">
-    @crsf
+    @csrf
     @method('POST')
     <div>
         <label for="topico">Tópico</label>

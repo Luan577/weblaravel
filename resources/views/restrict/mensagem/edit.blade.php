@@ -3,7 +3,7 @@
 @section('content')
 @if(count($errors) > 0)
 <ul class="validator">
-    @foreach{$errors->all() as $error)
+    @foreach($errors->all() as $error)
     <li>{{$error}}</li>
     @endforeach
 </ul>
@@ -13,7 +13,7 @@
     @method('PUT')
     <div>
         <label for="titulo">Título</label>
-        <input type="text" name="titulo" id="titulo" value="{{ $mensagem->tutulo}}" required />
+        <input type="text" name="titulo" id="titulo" value="{{ $mensagem->titulo}}" required />
     </div>
     <div>
         <label for="msg">Mensagem</label>
@@ -26,8 +26,8 @@
         </label>
         <div class="sub">
             @foreach($topicos as $topico)
-            <input type="checkbox" id="top{{$topico->id}}" value="{{$topico->id}}" name="topico[]" @foreach($mensagem->topicos as $msgtopico)
-            @if($topico->id == $msgTopico->) checked @endif
+            <input type="checkbox" id="top{{$topico->id}}" value="{{$topico->id}}" name="topico[]" @foreach($mensagem->topicos as $msgTopico)
+            @if($topico->id == $msgTopico->id) checked @endif
             @endforeach
             />
             <label for="top{{$topico->id}}">{{$topico->topico}}</label>

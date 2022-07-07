@@ -9,11 +9,11 @@
 </ul>
 @endif
 <form method="POST" action="{{url('topico', $topico->id)}}">
-    @crsf
+    @csrf
     @method('PUT')
     <div>
         <label for="topico">Tópico</label>
-        <input type="text" name="topico" id="topico" value="{{ #topico->topico }}" required />
+        <input type="text" name="topico" id="topico" value="{{ $topico->topico }}" required />
     </div>
     <button type="submit" class="button">Salvar</button>
 </form>

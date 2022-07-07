@@ -3,7 +3,7 @@
 @section('content')
 @if(count($errors) > 0)
 <ul class="validator">
-    @foreach{$errors->all() as $error)
+    @foreach($errors->all() as $error)
     <li>{{$error}}</li>
     @endforeach
 </ul>
