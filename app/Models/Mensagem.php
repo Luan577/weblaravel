@@ -14,6 +14,6 @@ class Mensagem extends Model
     }
     public function topicos()
     {
-        return $this->belongsToMany(Topicos::class)->withTimestamps();
+        return $this->belongsToMany(Topico::class)->withTimestamps();
     }
 }

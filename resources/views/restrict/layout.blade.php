@@ -1,34 +1,31 @@
-@extends('restrict.layout')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reuse</title>
+    <link rel="stylesheet" href="{{asset('css/restrict/estilo.css')}}">
+</head>
 
-@section('content')
-</div>
-<table>
-     <thead>
-          <tr>
-             <tr>
-                 <th>Nome</th>
-                 <th>Título</th>
-                 <th>Mensagem</th>
-                 <th>Tópicos</th>
-                 <th>Editar</th>
-                 <th>Remover</th>
-          </tr>
-</thead>
-<tbody> 
-    @foreach(@mensagem as $mensagem)
-    <tr>
-        <td>{{$mensagem->user->name}}</td>
-        <td>{{$mensagem->titulo}}</td>
-        <td>{{$mensagem->mensagem}}</td>
-        <td>
-            @if(mensagem->topicos)
-            @foreach($mensagem->topicos as $topico)
-            <div{{$topico->topico}}</div>
-            @endforeach
-            @endif
-        </td>
-        <td>
-            <a href="{{route('mensagem.edit' , @mensagem->id)}}" class="button">
-                
-        </td>
-    </tr>
+<body>
+    <header>
+        <picture>
+            <img src="{{asset('img/logo.svg')}}" alt="Logo">
+        </picture>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{url('/mensagem')}}">Mensagens</a>
+                </li>
+                <li>
+                    <a href="{{url('/dashboard')}}">Usuários</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @yield('content')
+    </main>
+</body>
+</html>
