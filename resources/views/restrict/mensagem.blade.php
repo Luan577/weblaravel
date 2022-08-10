@@ -1,21 +1,21 @@
 @extends('restrict.layout')
-@section('content')
 
-<div>
+@section('content')
+<div> 
     <a href="{{url('mensagem/create')}}" class="button">Adicionar</a>
 </div>
-
 <table>
     <thead>
         <tr>
             <th>Nome</th>
-            <th>título</th>
+            <th>Título</th>
             <th>Mensagem</th>
             <th>Tópicos</th>
+            <th>Imagem</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>
-    </thead>
+    <thead>
     <tbody>
         @foreach($mensagens as $mensagem)
         <tr>
@@ -30,17 +30,21 @@
                 @endif
             </td>
             <td>
-            <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
-                        Editar
-                    </a>    
+                <img src="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg">
             </td>
             <td>
-                <form method="POST" action="{{route('mensagem.destroy', $mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
+                <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
+                Editar
+                </a>
+
+            </td>
+            <td>
+                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button">
                         Remover
-                    </button>    
+                    </button> 
                 </form>
             </td>
         </tr>
