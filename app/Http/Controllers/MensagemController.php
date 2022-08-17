@@ -51,8 +51,9 @@ class MensagemController extends Controller
             $mensagem->user_id = Auth::User()->id;
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
-            $name = $request->file('imagem')->getClientOriginalName();
-            $path = $request->file('imagem')->storeAs("public/img", $name);
+            //$name = $request->file('imagem')->getClientOriginalName();
+            //$path = $request->file('imagem')->storeAs("public/img", $name);
+            $name = $request->file('imagem'->store('','s3');
             $mensagem->imagem = $path;
             $mensagem->save();
             $mensagem->topicos()->attach($request->get('topico'));
