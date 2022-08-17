@@ -56,7 +56,7 @@ class MensagemController extends Controller
             $mensagem->imagem = $path;
             $mensagem->save();
             $mensagem->topicos()->attach($request->get('topico'));
-            //return redirect('mensagem');
+            return redirect('mensagem');
         }
     }
 
