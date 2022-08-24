@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mensagem;
-use Illuminate\Http\Request;
 use App\Models\Topico;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,14 +46,16 @@ class MensagemController extends Controller
             'topico' => 'array|exists:App\Models\Topico,id',
             'imagem' => 'image'
         ]);
-        if ($validated){
+        if ($validated) {
             $mensagem = new Mensagem();
-            $mensagem->user_id = Auth::User()->id;
+            $mensagem->user_id = Auth::user()->id;
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
             //$name = $request->file('imagem')->getClientOriginalName();
-            //$path = $request->file('imagem')->storeAs("public/img", $name);
-            $name = $request->file('imagem'->store('','s3');
+            //$path = $request->file('imagem')->storeAs("public/img",$name);
+            $name = $request->file('imagem')->store('','s3');
+            Storage::disk('s3')->setVisibility($name,'public');
+            $path = Storage::disk('s3')->url($name);
             $mensagem->imagem = $path;
             $mensagem->save();
             $mensagem->topicos()->attach($request->get('topico'));
@@ -99,17 +101,19 @@ class MensagemController extends Controller
             'topico' => 'array|exists:App\Models\Topico,id',
             'imagem' => 'image'
         ]);
-        if ($validated){
+        if ($validated) {
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
-            $name = $request->file('imagem')->getClientOriginalName();
-            $path = $request->file('imagem')->storeAs("public/img", $name);
+            //$name = $request->file('imagem')->getClientOriginalName();
+            //$path = $request->file('imagem')->storeAs("public/img",$name);
+            $name = $request->file('imagem')->store('','s3');
+            Storage::disk('s3')->setVisibility($name,'public');
+            $path = Storage::disk('s3')->url($name);
             $mensagem->imagem = $path;
             $mensagem->save();
-            $mensagem->topicos()->sync($request->get('topicos'));
+            $mensagem->topicos()->sync($request->get('topico'));
             return redirect('mensagem');
         }
-
     }
 
     /**
