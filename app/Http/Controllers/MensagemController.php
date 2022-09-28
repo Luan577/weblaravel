@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -17,8 +17,8 @@ class MensagemController extends Controller
      */
     public function index()
     {
-        $mensagem = Mensagem::all();
-        return view("restrict/mensagem", compact('mensagem'));
+        $mensagens = Mensagem::all();
+        return view("restrict/mensagem", compact('mensagens'));
     }
 
     /**
